@@ -13,7 +13,7 @@
             <flux:sidebar.nav>
                 <flux:sidebar.group :heading="__('Platform')" class="grid">
                     <flux:sidebar.item icon="home" :href="route('task.create')" :current="request()->routeIs('task.create')" wire:navigate>
-                        {{ __('Create') }}
+                        {{ __('Tasks') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
             </flux:sidebar.nav>
