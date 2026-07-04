@@ -7,7 +7,7 @@ First of all you create a project.
 In the terminal you write this:
 
 ```terminal
-php artisan make:livewire task.create --mfc
+php artisan make:livewire todo.create --mfc
 ```
 >[!NOTE]
 > --mfc steht für Multi-file component
@@ -21,7 +21,7 @@ In web.php you would also need to change the routing.
 In this case like so:
 
 ```php
-Route::livewire('task/create', 'task.create')->name('task.create');
+Route::livewire('todo/create', 'todo.create')->name('todo.create');
 ```
 
 After that you can run:
@@ -42,5 +42,10 @@ To make sure the new version of (in this case) create.blade.php is loaded and no
 > ```
 > This is how you would need to change it to:
 > ```php
-> 'home' => '/task/create',
+> 'home' => '/todo/create',
 > ```
+
+If you notice that you would like to rename the folder for example:
+I named it Task but I wanted to change it to Todo.
+You would need to create it with livewire again with the name you want to change to.
+Then the things you have (in this case) in create.blade.php and create.php inside the task folder you just copy and paste it into the todo folder.
