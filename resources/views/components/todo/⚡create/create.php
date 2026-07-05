@@ -6,20 +6,20 @@ use Livewire\Component;
 new class extends Component
 {
     public $todos = []; // So definiert man die Eigenschaft für die Schleife die sich in create.blade.php befindet
-    public $addContent = '';
-    public $editContent = '';
+    public string $addContent = '';
+    public string $editContent = '';
     public $deleteTodo = '';
 
 
-    public function createTodo()
+    public function addContent()
     {
         auth()->user()->todos()->create(['content' => $this->addContent]);
         $this->addContent = '';
-        return redirect('todo/create')->with('success', 'Todo successfully created.');
     }
 
-    public function updateTodo()
+    public function editContent()
     {
+        $this->editContent = '';
         return 'Todo successfully updated.';
     }
 
