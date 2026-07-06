@@ -74,3 +74,25 @@ Then the things you have (in this case) in create.blade.php and create.php insid
 @endforelse
 
 ```
+
+## Erklärung zu diesem Code
+
+```php
+public function createTodo()
+{
+    auth()->user()->todos()->create(['content' => $this->addContent]);
+    $this->todos = auth()->user()->todos;
+    $this->addContent = '';
+}
+```
+
+- `auth()user()->todos()->create(['content'=> $this->addContent]);`
+  `auth()->user()` holt den geraden eingeloggten User.
+  <br>
+  <br>
+- `->todos()` greift auf alle Todos zu, die zu diesem User gehören (die Beziehung, die ich vorhin eingerichtet habe.)
+  <br>
+  <br>
+- `->create(['content' => $this->addContent])` legt ein neues Todo in der Datenbank an mit dem Text den der User ins Eingabefeld getippt hat (`$this->addContent`). Das ist die eigentliche Speicherzeile - hier landet der Text in der DB.
+  `$this->todos = auth()->user()->todos` holt **alle** Todos des Users **erneut** aus der Datenbank (jetzt inklusive des gerade neu erstellten) und speichert sie in der Property `$todos`. Das sorgt dafür, dass die Liste im Template (`(@forelse ($todos as $todo)`) sich aktualisiert und das neue Todo sofort angezeigt wird.
+  `$this->addContent = '';` setzt das Eingabefeld wieder auf leer zurück, damit der User nicht seinen alten Text sieht, sondern ein leeres Feld für den nächsten Eintrag.
