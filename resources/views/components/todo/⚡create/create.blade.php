@@ -4,6 +4,9 @@
         <form wire:submit.prevent="createTodo">
             <flux:input.group> <!---- Mit input.group kann man ein Input-Element gruppieren -->
                 <flux:input wire:model="addContent" type="text" placeholder="What do you want to do?" required/>
+                @error('addContent')
+                    <span style="color: red;">{{ $message }}</span>
+                @enderror
                 <flux:button type="submit" variant="primary" color="amber" icon="plus"/>
             </flux:input.group>
         </form>
@@ -25,6 +28,9 @@
                             <flux:heading size="lg">Edit Todo</flux:heading>
                         </div>
                         <flux:input wire:model="editContent" placeholder="The Todo"/>
+                        @error('editContent')
+                            <span style="color: red;">{{ $message }}</span>
+                        @enderror
                         <div class="flex">
                             <flux:spacer/>
                             <flux:button wire:click="updateTodo" type="submit" variant="primary">Save changes</flux:button>
