@@ -15,7 +15,7 @@
             @forelse ($todos as $todo)
             <!-- Each todo has a unique ID -->
             <div class="flex justify-between mb-3">
-                <flux:button class="w-38"/>
+                <flux:button class="w-38 px-6">{{ $todo->content }}</flux:button>
 
                 <!-- Edit a todo -->
                 <flux:modal.trigger name="edit-todo" class="flex gap-2">
@@ -59,7 +59,7 @@
                                 <flux:button variant="ghost">Cancel</flux:button>
                             </flux:modal.close>
 
-                            <flux:button wire:click="deleteTodo" type="submit" variant="danger">Delete project</flux:button>
+                            <flux:button wire:click="deleteTodo({{ $todo->id }})" type="submit" variant="danger">Delete project</flux:button>
                         </div>
                     </div>
                 </flux:modal>
