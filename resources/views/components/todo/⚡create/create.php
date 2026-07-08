@@ -13,9 +13,7 @@ new class extends Component
 
     public function mount()
     {
-        $this->addContent = Auth::user()->addContent;
-        $this->editContent = Auth::user()->editContent;
-        $this->deleteTodo = Auth::user()->deleteTodo;
+        $this->todos = auth()->user()->todos;
     }
 
     public function createTodo()
@@ -26,14 +24,14 @@ new class extends Component
     }
 
 
-    public function editTodo()
+    public function editTodo($id)
     {
         auth()->user()->todos()->edit(['content' => $this->editContent]);
         $this->editContent = '';
     }
 
-    public function deleteTodo()
+    public function deleteTodo($id)
     {
-
+        auth()->user()->todos()->delete();
     }
 };
