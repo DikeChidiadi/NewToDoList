@@ -96,3 +96,22 @@ public function createTodo()
 - `->create(['content' => $this->addContent])` legt ein neues Todo in der Datenbank an mit dem Text den der User ins Eingabefeld getippt hat (`$this->addContent`). Das ist die eigentliche Speicherzeile - hier landet der Text in der DB.
   `$this->todos = auth()->user()->todos` holt **alle** Todos des Users **erneut** aus der Datenbank (jetzt inklusive des gerade neu erstellten) und speichert sie in der Property `$todos`. Das sorgt dafür, dass die Liste im Template (`(@forelse ($todos as $todo)`) sich aktualisiert und das neue Todo sofort angezeigt wird.
   `$this->addContent = '';` setzt das Eingabefeld wieder auf leer zurück, damit der User nicht seinen alten Text sieht, sondern ein leeres Feld für den nächsten Eintrag.
+
+## Codeverständnis
+
+```php
+public function mount()
+{
+    $this->todos = auth()->user()->todos;
+}
+
+```
+
+_Erklärung:_
+ Dieser Code läuft einmal beim ersten Laden der Komponente und lädt alle Todos, die dem eingeloggten User gehören aus der Datenbank in die Eigenschaft (Property) `$todos`. Ohne dem wäre `$todos` beim Seitenaufruf leer egal was in der Datenbank steht.
+
+ ```php
+ <flux:button class="w-38">{{ $todo->content }}</flux:button>
+ ```
+Das ist der Teil, der den Text jedes einzelnen Todos (also `content` aus der Datenbank) tatsächlich auf dem Bildschirm anzeigt - für jedes Element über das die `@forelse`-Schleife läuft. Ohne diese Zeile würde die Schleife zwar korrekt durchlaufen, aber es wäre kein Text sichtbar.
+`Mount` sorgt dafür, dass die Todos geladen werden.
