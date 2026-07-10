@@ -15,7 +15,7 @@
             @forelse ($todos as $todo)
             <!-- Each todo has a unique ID -->
             <div class="flex justify-between mb-3">
-                <flux:button class="w-38 px-6">{{ $todo->content }}</flux:button>
+                <flux:button class="w-38">{{ $todo->content }}</flux:button>
 
                 <!-- Edit a todo -->
                 <flux:modal.trigger name="edit-todo" class="flex gap-2">
