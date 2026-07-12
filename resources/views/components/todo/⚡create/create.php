@@ -24,14 +24,16 @@ new class extends Component
     }
 
 
-    public function editTodo($id)
+    public function editTodo()
     {
         auth()->user()->todos()->edit(['content' => $this->editContent]);
         $this->editContent = '';
     }
 
-    public function deleteTodo($id)
+    public function deleteTodo()
     {
-        auth()->user()->todos()->delete();
+        auth()->user()->todos()->delete(['content' => $this->deleteTodo]);
+        $this->todos = auth()->user()->todos;
+        $this->deleteTodo = '';
     }
 };
