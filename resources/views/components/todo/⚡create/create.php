@@ -30,7 +30,7 @@ new class extends Component
         $this->editContent = '';
     }
 
-    public function deleteTodo($id)
+    public function deleteTodo(int $id)
     {
         auth()->user()->todos()->where('id', $id)->delete();
         $this->todos = auth()->user()->todos;
