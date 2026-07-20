@@ -22,7 +22,7 @@
                     <flux:button wire:click="editTodo" variant="filled" icon="pencil"/>
                 </flux:modal.trigger>
 
-                <flux:modal name="edit-todo" class="md:w-96">
+                <flux:modal name="edit-todo-{{ $todo->id }}" class="md:w-96">
                     <div class="space-y-6">
                         <div>
                             <flux:heading size="lg">Edit Todo</flux:heading>
@@ -39,11 +39,11 @@
                 </flux:modal>
 
                 <!-- Delete a todo -->
-                <flux:modal.trigger name="delete-todo">
+                <flux:modal.trigger name="delete-todo-{{ $todo->id }}">
                     <flux:button variant="danger" icon="trash"/>
                 </flux:modal.trigger>
 
-                <flux:modal name="delete-todo" class="min-w-8">
+                <flux:modal name="delete-todo-{{ $todo->id }}" class="min-w-8">
                     <div class="space-y-8">
                         <div>
                             <flux:heading size="lg">Are you sure?</flux:heading>
@@ -57,9 +57,8 @@
 
                             <flux:modal.close>
                                 <flux:button variant="ghost">Cancel</flux:button>
+                                <flux:button wire:click="deleteTodo({{ $todo->id }})" type="submit" variant="danger">Delete project</flux:button>
                             </flux:modal.close>
-
-                            <flux:button wire:click="deleteTodo({{ $todo->id }})" type="submit" variant="danger">Delete project</flux:button>
                         </div>
                     </div>
                 </flux:modal>
