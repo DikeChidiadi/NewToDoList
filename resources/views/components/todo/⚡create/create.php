@@ -9,7 +9,7 @@ new class extends Component
     public $todos = []; // So definiert man die Eigenschaft für die Schleife die sich in create.blade.php befindet
     public $addContent = '';
     public $editContent = '';
-    public $deleteTodo = '';
+    // public $deleteTodo = ''; da werd ich noch was im ReadMe.md dazuschreiben
 
     public function mount()
     {
