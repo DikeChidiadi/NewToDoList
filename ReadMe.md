@@ -115,3 +115,9 @@ _Erklärung:_
  ```
 Das ist der Teil, der den Text jedes einzelnen Todos (also `content` aus der Datenbank) tatsächlich auf dem Bildschirm anzeigt - für jedes Element über das die `@forelse`-Schleife läuft. Ohne diese Zeile würde die Schleife zwar korrekt durchlaufen, aber es wäre kein Text sichtbar.
 `Mount` sorgt dafür, dass die Todos geladen werden.
+
+Wird ein Modal sehr oft gestapelt (In dem Fall: Todo so oft klicken bis auch das letzt unsichtbare, darunterliegende Modal geschlossen ist.) liegt es daran:
+`name="$delete-todo"`
+
+Ich muss sicher gehen, dass ich den Namen pro Todo (oder was anderes) eindeutig gemacht wird:
+`name="$delete-todo-{{ $todo->id }}"`
