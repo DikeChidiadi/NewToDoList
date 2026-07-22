@@ -121,3 +121,10 @@ Wird ein Modal sehr oft gestapelt (In dem Fall: Todo so oft klicken bis auch das
 
 Ich muss sicher gehen, dass ich den Namen pro Todo (oder was anderes) eindeutig gemacht wird:
 `name="$delete-todo-{{ $todo->id }}"`
+
+
+## wire:click
+
+*wire:click.prevent*
+Mit dem wird verhindert, dass das was der User anklickt nicht sofort geladen oder gespeichert wird.
+In diesem Fall, wenn der User aufs Modal mit dem Stift anklickt, wird es mit dem modifier `.prevent` verhindert.
