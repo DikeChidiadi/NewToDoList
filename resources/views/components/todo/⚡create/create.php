@@ -7,11 +7,11 @@ use Livewire\Component;
 new class extends Component
 {
     public $todos = []; // So definiert man die Eigenschaft für die Schleife die sich in create.blade.php befindet
-    public $addContent = '';
-    public $editContent = '';
-    // public $deleteTodo = ''; da werd ich noch was im ReadMe.md dazuschreiben
+    public $addContent = ''; // So definiert man die Eigenschaft die ich in create.blade.php benutzen werde.
+    public $editId = ''; // So definiert man die Eigenschaft die ich in edit.blade.php benutzen werde.
+    public $editContent = ''; // So definiert man die Eigenschaft die ich in edit.blade.php benutzen werde.
 
-    public function mount()
+    public function mount() // Mit dieser Funktion wird die Komponente geladen, um die Daten zu laden.
     {
         $this->todos = auth()->user()->todos;
     }
@@ -24,9 +24,17 @@ new class extends Component
     }
 
 
-    public function editTodo()
+    public function editTodo(int $id)
     {
-        auth()->user()->todos()->edit(['content' => $this->editContent]);
+        $todo = auth()->user()->todos()->find($id);
+        $this->editId = $id;
+        $this->editContent = $todo->content;
+    }
+
+    public function updateTodo()
+    {
+        auth()->user()->todos()->where('id', $this->editId)->update(['content' => $this->editContent]);
+        $this->todos = auth()->user()->todos;
         $this->editContent = '';
     }
 
