@@ -43,4 +43,11 @@ new class extends Component
         auth()->user()->todos()->where('id', $id)->delete();
         $this->todos = auth()->user()->todos;
     }
+
+    public function toggleTodo(int $id) 
+    {
+        $todo = auth()->user()->todos()->findOrFail($id);
+        $todo->update(['completed' => !$todo->completed]);
+        $this->todos = auth()->user()->todos;
+    }
 };
