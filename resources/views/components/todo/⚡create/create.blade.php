@@ -15,7 +15,7 @@
             @forelse ($todos as $todo)
                 <!-- Each todo has a unique ID -->
                 <div class="flex justify-between mb-3">
-                    <flux:button class="flex-1 justify-start truncate mr-2">{{ $todo->content }}</flux:button>
+                    <flux:button wire:click="toggleTodo({{ $todo->id }})" class="flex-1 justify-start truncate {{ $todo->completed ? 'line-through opacity-50' : '' }} mr-2">{{ $todo->content }}</flux:button>
 
                     <!-- Edit a todo -->
                     <flux:modal.trigger name="edit-todo-{{ $todo->id }}" class="flex mr-2">
