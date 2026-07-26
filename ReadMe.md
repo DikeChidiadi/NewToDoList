@@ -128,3 +128,9 @@ Ich muss sicher gehen, dass ich den Namen pro Todo (oder was anderes) eindeutig 
 *wire:click.prevent*
 Mit dem wird verhindert, dass das was der User anklickt nicht sofort geladen oder gespeichert wird.
 In diesem Fall, wenn der User aufs Modal mit dem Stift anklickt, wird es mit dem modifier `.prevent` verhindert.
+
+
+## justify
+
+*justify-start*
+Mit dem wird der Text linksbündig 
